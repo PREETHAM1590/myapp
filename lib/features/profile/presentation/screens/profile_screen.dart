@@ -49,8 +49,8 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Expanded(child: InfoCard(title: 'Eco-Points', value: '1,250', icon: Icons.eco, iconColor: Colors.green,)),
                 SizedBox(width: 16),
                 Expanded(child: InfoCard(title: 'Achievements', value: '3 / 15', icon: Icons.emoji_events, iconColor: Colors.orange,)),

@@ -1,9 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:firebase_ai/firebase_ai.dart';
+import 'package:flutter/foundation.dart';
 
 class ChatProvider with ChangeNotifier {
-  final GenerativeModel _model =
-      FirebaseVertexAI.instance.generativeModel(model: 'gemini-pro');
+  // final GenerativeModel _model =
+  //     FirebaseVertexAI.instance.generativeModel(model: 'gemini-1.5-flash');
   final List<Message> _messages = [];
   bool _isLoading = false;
 
@@ -16,8 +16,9 @@ class ChatProvider with ChangeNotifier {
     notifyListeners();
 
     try {
-      final response = await _model.generateContent([Content.text(text)]);
-      _messages.add(Message(text: response.text ?? '', isUser: false));
+      // final response = await _model.generateContent([Content.text(text)]);
+      // _messages.add(Message(text: response.text ?? '', isUser: false));
+      _messages.add(Message(text: 'This feature is currently disabled.', isUser: false));
     } catch (e) {
       _messages.add(Message(text: 'Error: ${e.toString()}', isUser: false));
     } finally {

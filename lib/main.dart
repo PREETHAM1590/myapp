@@ -7,6 +7,7 @@ import 'package:myapp/features/chatbot/data/chat_provider.dart';
 import 'package:myapp/features/wallet/data/wallet_provider.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
+import 'package:firebase_ai/firebase_ai.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

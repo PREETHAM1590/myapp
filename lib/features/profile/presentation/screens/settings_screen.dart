@@ -20,36 +20,36 @@ class SettingsScreen extends StatelessWidget {
           children: [
             const UserHeader(),
             const SizedBox(height: 24),
-            SettingsSection(
+            const SettingsSection(
               title: 'App Preferences',
               tiles: [
-                const SettingsTile(
+                SettingsTile(
                     icon: Icons.notifications_outlined, title: 'Notifications'),
                 SettingsTile(
                     icon: Icons.language_outlined,
                     title: 'Language',
-                    trailing: const Text('English')),
+                    trailing: Text('English')),
                 SettingsTile(
                     icon: Icons.color_lens_outlined,
                     title: 'Theme',
-                    trailing: const Text('Light')),
+                    trailing: Text('Light')),
               ],
             ),
-            SettingsSection(
+            const SettingsSection(
               title: 'Personalization',
               tiles: [
-                const SettingsTile(
+                SettingsTile(
                     icon: Icons.dynamic_feed_outlined, title: 'Dynamic Theme'),
-                const SettingsTile(icon: Icons.track_changes_outlined, title: 'Goals'),
+                SettingsTile(icon: Icons.track_changes_outlined, title: 'Goals'),
               ],
             ),
-            SettingsSection(
+            const SettingsSection(
               title: 'Support & Information',
               tiles: [
-                const SettingsTile(icon: Icons.help_outline, title: 'FAQ'),
-                const SettingsTile(
+                SettingsTile(icon: Icons.help_outline, title: 'FAQ'),
+                SettingsTile(
                     icon: Icons.support_agent_outlined, title: 'Contact Support'),
-                const SettingsTile(
+                SettingsTile(
                     icon: Icons.info_outline, title: 'About Waste Wise'),
               ],
             ),
@@ -75,10 +75,10 @@ class UserHeader extends StatelessWidget {
           child: Text('A', style: TextStyle(color: Colors.white, fontSize: 24)),
         ),
         const SizedBox(width: 16),
-        Expanded(
+        const Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 'Alex Greenfield',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),

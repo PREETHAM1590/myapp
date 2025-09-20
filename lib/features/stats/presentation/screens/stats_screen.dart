@@ -30,8 +30,8 @@ class StatsScreen extends StatelessWidget {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Expanded(
                   child: SummaryCard(
                     value: '248',
@@ -57,7 +57,7 @@ class StatsScreen extends StatelessWidget {
             const SizedBox(height: 16),
             SizedBox(
               height: 250,
-              child: WasteBreakdownChart(),
+              child: const WasteBreakdownChart(),
             ),
             const SizedBox(height: 24),
             const Text(
@@ -67,7 +67,7 @@ class StatsScreen extends StatelessWidget {
             const SizedBox(height: 16),
             SizedBox(
               height: 200,
-              child: EcoPointsChart(),
+              child: const EcoPointsChart(),
             ),
           ],
         ),
@@ -203,6 +203,7 @@ class EcoPointsChart extends StatelessWidget {
                   child: text,
                 );
               },
+              reservedSize: 32,
             ),
           ),
         ),

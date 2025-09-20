@@ -55,8 +55,8 @@ class WalletProvider with ChangeNotifier {
     try {
       final client = RpcClient('https://api.devnet.solana.com');
       final instruction = SystemInstruction.transfer(
-        fromPublicKey: _keyPair!.publicKey,
-        toPublicKey: Ed25519HDPublicKey.fromBase58(toAddress),
+        fundingAccount: _keyPair!.publicKey,
+        recipientAccount: Ed25519HDPublicKey.fromBase58(toAddress),
         lamports: (amount * lamportsPerSol).toInt(),
       );
       final message = Message(instructions: [instruction]);
@@ -69,7 +69,6 @@ class WalletProvider with ChangeNotifier {
       final signature = await client.sendTransaction(signedTx.encode());
       return signature;
     } catch (e) {
-      print(e);
       return null;
     } finally {
       _setLoading(false);
