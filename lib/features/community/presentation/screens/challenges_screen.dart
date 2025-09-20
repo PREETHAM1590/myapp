@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class TrackingScreen extends StatelessWidget {
-  const TrackingScreen({super.key});
+class ChallengesScreen extends StatelessWidget {
+  const ChallengesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Tracking'),
+        title: const Text('Community Challenges'),
       ),
       body: const Center(
-        child: Text('Tracking Screen'),
+        child: Text('Challenges Screen'),
       ),
     );
   }

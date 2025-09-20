@@ -1,65 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/features/dashboard/presentation/screens/dashboard_screen.dart';
-import 'package:myapp/features/chatbot/presentation/screens/chatbot_screen.dart';
-import 'package:myapp/features/marketplace/presentation/screens/marketplace_screen.dart';
-import 'package:myapp/features/gamification/presentation/screens/leaderboard_screen.dart';
-import 'package:myapp/features/profile/presentation/screens/profile_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+  final Widget child;
+
+  const BottomNav({super.key, required this.child});
 
   @override
   State<BottomNav> createState() => _BottomNavState();
 }
 
 class _BottomNavState extends State<BottomNav> {
-  int _selectedIndex = 0;
-  final List<Widget> _screens = [
-    const DashboardScreen(),
-    const ChatbotScreen(),
-    const MarketplaceScreen(),
-    const LeaderboardScreen(),
-    const ProfileScreen(),
-  ];
+  int _currentIndex = 0;
 
-  void _onItemTapped(int index) {
+  void _onTap(int index) {
+    if (index == 2) {
+      context.go('/waste_scanning');
+      return;
+    }
     setState(() {
-      _selectedIndex = index;
+      _currentIndex = index;
     });
+    switch (index) {
+      case 0:
+        context.go('/dashboard');
+        break;
+      case 1:
+        context.go('/stats');
+        break;
+      case 3:
+        context.go('/community');
+        break;
+      case 4:
+        context.go('/profile');
+        break;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard),
-            label: 'Dashboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: 'Chatbot',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.store),
-            label: 'Marketplace',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.leaderboard),
-            label: 'Leaderboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.grey,
-        onTap: _onItemTapped,
+      body: widget.child,
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 8.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.home),
+              onPressed: () => _onTap(0),
+              color: _currentIndex == 0 ? Theme.of(context).primaryColor : Colors.grey,
+            ),
+            IconButton(
+              icon: const Icon(Icons.bar_chart),
+              onPressed: () => _onTap(1),
+              color: _currentIndex == 1 ? Theme.of(context).primaryColor : Colors.grey,
+            ),
+            const SizedBox(width: 40), // The space for the FAB
+            IconButton(
+              icon: const Icon(Icons.people),
+              onPressed: () => _onTap(3),
+              color: _currentIndex == 3 ? Theme.of(context).primaryColor : Colors.grey,
+            ),
+            IconButton(
+              icon: const Icon(Icons.person),
+              onPressed: () => _onTap(4),
+              color: _currentIndex == 4 ? Theme.of(context).primaryColor : Colors.grey,
+            ),
+          ],
+        ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.go('/waste_scanning'),
+        child: const Icon(Icons.qr_code_scanner),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
