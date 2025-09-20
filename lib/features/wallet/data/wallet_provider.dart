@@ -55,14 +55,14 @@ class WalletProvider with ChangeNotifier {
     try {
       final client = RpcClient('https://api.devnet.solana.com');
       final instruction = SystemInstruction.transfer(
-        fromPubKey: _keyPair!.publicKey.toBase58(),
-        toPubKey: toAddress,
+        fromPublicKey: _keyPair!.publicKey,
+        toPublicKey: Ed25519HDPublicKey.fromBase58(toAddress),
         lamports: (amount * lamportsPerSol).toInt(),
       );
       final message = Message(instructions: [instruction]);
       final recentBlockhash = await client.getLatestBlockhash();
       final signedTx = await signTransaction(
-        recentBlockhash.value.blockhash,
+        recentBlockhash.value,
         message,
         [_keyPair!],
       );
