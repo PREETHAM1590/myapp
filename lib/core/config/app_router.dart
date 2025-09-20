@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myapp/features/authentication/presentation/screens/login_screen.dart';
-import 'package:myapp/features/chatbot/presentation/screens/chatbot_screen.dart';
 import 'package:myapp/features/community/presentation/screens/challenges_screen.dart';
 import 'package:myapp/features/community/presentation/screens/community_screen.dart';
 import 'package:myapp/features/community/presentation/screens/learn_screen.dart';
@@ -11,6 +10,7 @@ import 'package:myapp/features/profile/presentation/screens/profile_screen.dart'
 import 'package:myapp/features/profile/presentation/screens/settings_screen.dart';
 import 'package:myapp/features/stats/presentation/screens/stats_screen.dart';
 import 'package:myapp/features/wallet/presentation/screens/wallet_screen.dart';
+import 'package:myapp/features/wallet/presentation/screens/wallet_test_screen.dart';
 import 'package:myapp/features/waste_scanning/presentation/screens/waste_scanning_screen.dart';
 import 'package:myapp/core/widgets/bottom_nav.dart';
 
@@ -19,9 +19,13 @@ class AppRouter {
   static final _shellNavigatorKey = GlobalKey<NavigatorState>();
 
   static final GoRouter router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/wallet-test',
     navigatorKey: _rootNavigatorKey,
     routes: [
+       GoRoute(
+        path: '/wallet-test',
+        builder: (context, state) => const WalletTestScreen(),
+      ),
       GoRoute(
         path: '/',
         builder: (context, state) => const LoginScreen(),
@@ -73,10 +77,6 @@ class AppRouter {
       GoRoute(
         path: '/wallet',
         builder: (context, state) => const WalletScreen(),
-      ),
-      GoRoute(
-        path: '/chatbot',
-        builder: (context, state) => const ChatbotScreen(),
       ),
     ],
   );
